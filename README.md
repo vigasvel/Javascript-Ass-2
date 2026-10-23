@@ -47,19 +47,3 @@ Every project has its own README with features, API list and run steps. The shor
 3. **Port already in use** → close the old terminal running that project, or change `PORT` in `.env`.
 4. **Angular asks about analytics** → it is turned off in `angular.json`; if asked, type `N`.
 
-## Upload to GitHub
-
-1. Sign in at https://github.com → **New repository** → name it `U21CSP12-Assignment2-24CS241` → Public → **Create repository** (do NOT add a README).
-2. Install Git from https://git-scm.com if `git --version` does not work.
-3. Open a terminal **inside this `Vigasvel_R_JS_2` folder** and run:
-
-```bash
-git init
-git add .
-git commit -m "U21CSP12 Assignment II - Vigasvel R (24CS241)"
-git branch -M main
-git remote add origin https://github.com/<your-username>/U21CSP12-Assignment2-24CS241.git
-git push -u origin main
-```
-
-4. `node_modules` is excluded by `.gitignore`, so the upload is small. Submit the repository link.
