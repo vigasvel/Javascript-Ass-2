@@ -1,0 +1,28 @@
+.grid { display: grid; grid-template-columns: 1fr 320px; gap: 22px; align-items: start; }
+.card, .info, .idcard { background: #fff; border-radius: 18px; padding: 24px; box-shadow: 0 6px 24px rgba(3, 105, 161, .08); }
+h2 { margin: 0; color: var(--blue); }
+.sub { color: var(--muted); font-size: 13px; margin: 4px 0 16px; }
+.row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+.row .wide { grid-column: span 2; }
+label { display: flex; flex-direction: column; gap: 5px; font-size: 13px; font-weight: 600; color: #334155; margin-bottom: 14px; }
+input, select, textarea { padding: 10px 12px; border: 1.5px solid var(--line); border-radius: 10px; font-size: 14px; font-family: inherit; }
+input:focus, select:focus, textarea:focus { outline: none; border-color: var(--blue); box-shadow: 0 0 0 3px rgba(3, 105, 161, .12); }
+.ng-invalid.ng-touched:not(form) { border-color: var(--red); }
+.e { color: var(--red); font-size: 12px; font-weight: 500; }
+.gender { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; flex-wrap: wrap; font-size: 13px; font-weight: 600; color: #334155; }
+.radio { flex-direction: row; align-items: center; gap: 6px; margin: 0; border: 1.5px solid var(--line); border-radius: 999px; padding: 6px 14px; font-weight: 500; cursor: pointer; }
+.radio.on { border-color: var(--blue); background: var(--blue-soft); color: var(--blue); }
+.radio input { accent-color: var(--blue); }
+.count { color: var(--muted); font-weight: 400; text-align: right; }
+.check { flex-direction: row; align-items: center; font-weight: 400; }
+.alert { background: #fff7ed; color: #9a3412; padding: 10px 12px; border-radius: 10px; font-size: 13px; }
+.primary { width: 100%; padding: 13px; border: 0; border-radius: 12px; background: var(--blue); color: #fff; font-size: 15px; font-weight: 700; cursor: pointer; }
+.primary:disabled { opacity: .6; }
+.idcard { background: linear-gradient(145deg, #0369a1, #0d9488); color: #fff; }
+.lbl { font-size: 11px; letter-spacing: 2px; opacity: .8; }
+.idcard h3 { margin: 10px 0 4px; font-size: 22px; }
+.pid { font-family: Consolas, monospace; font-size: 30px; font-weight: 700; background: rgba(255,255,255,.15); padding: 8px 12px; border-radius: 10px; display: inline-block; margin: 6px 0 10px; }
+.idcard p { margin: 4px 0; opacity: .9; }
+.go { display: block; margin-top: 16px; background: #fff; color: var(--blue); text-align: center; padding: 11px; border-radius: 10px; font-weight: 700; text-decoration: none; }
+.info h3 { margin-top: 0; color: var(--blue); }
+.info ol { padding-left: 18px; color: #334155; font-size: 14px; line-height: 1.8; }

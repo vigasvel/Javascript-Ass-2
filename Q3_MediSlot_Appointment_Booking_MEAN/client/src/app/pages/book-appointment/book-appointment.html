@@ -1,0 +1,83 @@
+@if (confirmed(); as a) {
+  <div class="ticket">
+    <div class="tick">✓</div>
+    <h2>Appointment confirmed</h2>
+    <div class="token">Token #{{ a.token }}</div>
+    <table>
+      <tr><td>Patient</td><td>{{ a.patient.name }} ({{ a.patient.patientId }})</td></tr>
+      <tr><td>Doctor</td><td>{{ a.doctor.name }} · {{ a.doctor.specialization }}</td></tr>
+      <tr><td>When</td><td>{{ a.date }} at {{ a.time }}</td></tr>
+      <tr><td>Room</td><td>{{ a.doctor.room }}</td></tr>
+      <tr><td>Fee</td><td>₹{{ a.doctor.fee }}</td></tr>
+    </table>
+    <div class="tbtn">
+      <button (click)="newBooking()">Book another</button>
+      <a routerLink="/appointments" [queryParams]="{ patient: a.patient.patientId }">View appointments</a>
+    </div>
+  </div>
+} @else {
+  <div class="steps">
+    <!-- STEP 1 -->
+    <section class="step">
+      <h3><span>1</span> Patient</h3>
+      <div class="find">
+        <input [(ngModel)]="patientIdText" placeholder="Patient ID e.g. MS-1001" (keyup.enter)="findPatient()" />
+        <button (click)="findPatient()">Find</button>
+      </div>
+      @if (patientErr()) { <p class="e">{{ patientErr() }} · <a routerLink="/register">Register new patient</a></p> }
+      @if (patient(); as p) {
+        <div class="pchip">
+          <b>{{ p.name }}</b> · {{ p.patientId }} · {{ p.age }} yrs {{ p.gender }} · 📞 {{ p.phone }}
+        </div>
+      }
+    </section>
+
+    <!-- STEP 2 -->
+    <section class="step">
+      <h3><span>2</span> Choose doctor</h3>
+      <div class="specs">
+        <button [class.on]="!specialization()" (click)="specialization.set('')">All</button>
+        @for (s of specializations(); track s) {
+          <button [class.on]="specialization() === s" (click)="specialization.set(s)">{{ s }}</button>
+        }
+      </div>
+      <div class="docs">
+        @for (d of shownDoctors(); track d._id) {
+          <button class="doc" [class.on]="doctor()?._id === d._id" (click)="chooseDoctor(d)">
+            <span class="ava">{{ d.name.split(' ')[1].charAt(0) }}</span>
+            <span class="dn">{{ d.name }}</span>
+            <span class="ds">{{ d.specialization }} · {{ d.experience }} yrs</span>
+            <span class="dd">{{ d.days.join(', ') }}</span>
+            <span class="df">₹{{ d.fee }} · {{ d.room }}</span>
+          </button>
+        }
+      </div>
+    </section>
+
+    <!-- STEP 3 -->
+    <section class="step">
+      <h3><span>3</span> Date & available slot</h3>
+      <input type="date" [min]="minDate" [(ngModel)]="date" (change)="loadSlots()" [disabled]="!doctor()" />
+      @if (!doctor()) { <p class="hint">Select a doctor first.</p> }
+      @if (slotInfo(); as s) {
+        @if (!s.working) {
+          <p class="e">{{ s.doctor }} does not consult on {{ s.weekday }}. Choose another date.</p>
+        } @else {
+          <div class="slots">
+            @for (sl of s.slots; track sl.time) {
+              <button class="slot" [class.sel]="time() === sl.time" [class.busy]="sl.booked" [disabled]="!sl.available" (click)="time.set(sl.time)">
+                {{ sl.time }} <small>{{ sl.booked ? 'booked' : sl.past ? 'over' : 'free' }}</small>
+              </button>
+            }
+          </div>
+        }
+      }
+      <textarea [(ngModel)]="reason" rows="2" maxlength="200" placeholder="Reason for visit (optional)"></textarea>
+    </section>
+
+    @if (error()) { <p class="alert">{{ error() }}</p> }
+    <button class="confirm" [disabled]="!canBook()" (click)="book()">
+      {{ booking() ? 'Booking…' : time() ? 'Confirm ' + time() + ' on ' + date : 'Confirm appointment' }}
+    </button>
+  </div>
+}

@@ -1,0 +1,47 @@
+<div class="bar">
+  <input [(ngModel)]="filter.patientId" placeholder="Patient ID" (keyup.enter)="load()" />
+  <input type="date" [(ngModel)]="filter.date" (change)="load()" />
+  <select [(ngModel)]="filter.status" (change)="load()">
+    <option value="">All status</option>
+    <option>Booked</option>
+    <option>Completed</option>
+    <option>Cancelled</option>
+  </select>
+  <button (click)="load()">Search</button>
+  <button class="ghost" (click)="reset()">Reset</button>
+</div>
+
+<div class="pills">
+  <span class="p b">{{ counts().booked }} booked</span>
+  <span class="p c">{{ counts().completed }} completed</span>
+  <span class="p x">{{ counts().cancelled }} cancelled</span>
+  @if (msg()) { <span class="msg">{{ msg() }}</span> }
+</div>
+
+<div class="tablecard">
+  <table>
+    <thead>
+      <tr><th>Token</th><th>Date & time</th><th>Patient</th><th>Doctor</th><th>Reason</th><th>Status</th><th>Action</th></tr>
+    </thead>
+    <tbody>
+      @for (a of list(); track a._id) {
+        <tr>
+          <td class="tok">#{{ a.token }}</td>
+          <td><b>{{ a.date }}</b><br /><small>{{ a.time }}</small></td>
+          <td>{{ a.patient.name }}<br /><small>{{ a.patient.patientId }} · {{ a.patient.phone }}</small></td>
+          <td>{{ a.doctor.name }}<br /><small>{{ a.doctor.specialization }} · {{ a.doctor.room }}</small></td>
+          <td class="rs">{{ a.reason || '—' }}</td>
+          <td><span class="st {{ a.status }}">{{ a.status }}</span></td>
+          <td class="act">
+            @if (a.status === 'Booked') {
+              <button class="ok" (click)="update(a, 'Completed')">Complete</button>
+              <button class="no" (click)="update(a, 'Cancelled')">Cancel</button>
+            }
+          </td>
+        </tr>
+      } @empty {
+        <tr><td colspan="7" class="empty">No appointments found.</td></tr>
+      }
+    </tbody>
+  </table>
+</div>

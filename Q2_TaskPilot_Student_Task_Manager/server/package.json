@@ -1,0 +1,22 @@
+{
+  "name": "taskpilot-server",
+  "version": "1.0.0",
+  "description": "TaskPilot - Student Task Manager API (Node.js + Express + MongoDB)",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "seed": "node src/seed.js"
+  },
+  "author": "Vigasvel R (24CS241)",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.2",
+    "mongoose": "^8.9.5"
+  },
+  "optionalDependencies": {
+    "mongodb-memory-server-core": "^10.1.4"
+  }
+}

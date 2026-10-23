@@ -1,0 +1,81 @@
+<section class="grid">
+  <form [formGroup]="form" (ngSubmit)="submit()" class="card" novalidate>
+    <h2>New Patient Registration</h2>
+    <p class="sub">Fields marked * are mandatory</p>
+
+    <div class="row">
+      <label class="wide">Full name *
+        <input formControlName="name" placeholder="Patient name" />
+        @if (errorOf('name'); as e) { <span class="e">{{ e }}</span> }
+      </label>
+      <label>Age *
+        <input type="number" formControlName="age" placeholder="Years" />
+        @if (errorOf('age'); as e) { <span class="e">{{ e }}</span> }
+      </label>
+    </div>
+
+    <div class="gender">
+      <span>Gender *</span>
+      @for (g of ['Male', 'Female', 'Other']; track g) {
+        <label class="radio" [class.on]="form.value.gender === g">
+          <input type="radio" formControlName="gender" [value]="g" /> {{ g }}
+        </label>
+      }
+      @if (errorOf('gender'); as e) { <span class="e">{{ e }}</span> }
+    </div>
+
+    <div class="row">
+      <label>Mobile number *
+        <input formControlName="phone" maxlength="10" placeholder="98XXXXXXXX" />
+        @if (errorOf('phone'); as e) { <span class="e">{{ e }}</span> }
+      </label>
+      <label>Email
+        <input formControlName="email" placeholder="optional" />
+        @if (errorOf('email'); as e) { <span class="e">{{ e }}</span> }
+      </label>
+      <label>Blood group
+        <select formControlName="bloodGroup">
+          <option value="">—</option>
+          @for (b of bloodGroups; track b) { <option [value]="b">{{ b }}</option> }
+        </select>
+      </label>
+    </div>
+
+    <label>Address
+      <textarea formControlName="address" rows="2" placeholder="Area, City"></textarea>
+      <small class="count">{{ form.value.address?.length || 0 }}/150</small>
+    </label>
+
+    <label class="check">
+      <input type="checkbox" formControlName="consent" /> I agree that my details may be stored for hospital records *
+    </label>
+    @if (errorOf('consent'); as e) { <span class="e">{{ e }}</span> }
+
+    @if (error()) { <p class="alert">{{ error() }}</p> }
+    <button class="primary" [disabled]="saving()">{{ saving() ? 'Saving…' : 'Register Patient' }}</button>
+  </form>
+
+  <aside>
+    @if (saved(); as p) {
+      <div class="idcard">
+        <span class="lbl">PATIENT CARD</span>
+        <h3>{{ p.name }}</h3>
+        <div class="pid">{{ p.patientId }}</div>
+        <p>{{ p.age }} yrs · {{ p.gender }} @if (p.bloodGroup) { · {{ p.bloodGroup }} }</p>
+        <p>📞 {{ p.phone }}</p>
+        <a class="go" routerLink="/book" [queryParams]="{ patient: p.patientId }">Book appointment →</a>
+      </div>
+    } @else {
+      <div class="info">
+        <h3>How it works</h3>
+        <ol>
+          <li>Register the patient with this form.</li>
+          <li>A unique <b>Patient ID</b> (e.g. MS-1003) is generated.</li>
+          <li>Use that ID to book a doctor's slot.</li>
+          <li>Manage bookings in <b>Appointments</b>.</li>
+        </ol>
+        <p class="sub">Existing sample patients: MS-1001, MS-1002</p>
+      </div>
+    }
+  </aside>
+</section>

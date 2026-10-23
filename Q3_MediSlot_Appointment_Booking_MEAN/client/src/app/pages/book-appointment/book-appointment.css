@@ -1,0 +1,42 @@
+.steps { display: flex; flex-direction: column; gap: 16px; max-width: 980px; }
+.step { background: #fff; border-radius: 18px; padding: 20px; box-shadow: 0 6px 24px rgba(3, 105, 161, .07); }
+h3 { margin: 0 0 14px; display: flex; gap: 10px; align-items: center; color: #0f172a; }
+h3 span { width: 28px; height: 28px; border-radius: 50%; background: var(--blue); color: #fff; display: grid; place-items: center; font-size: 14px; }
+.find { display: flex; gap: 8px; max-width: 420px; }
+input, textarea { padding: 10px 12px; border: 1.5px solid var(--line); border-radius: 10px; font-size: 14px; font-family: inherit; }
+.find input { flex: 1; text-transform: uppercase; }
+.find button { border: 0; background: var(--blue); color: #fff; border-radius: 10px; padding: 0 18px; cursor: pointer; font-weight: 600; }
+.e { color: var(--red); font-size: 13px; }
+.pchip { margin-top: 10px; background: var(--blue-soft); color: #075985; padding: 10px 14px; border-radius: 10px; font-size: 14px; display: inline-block; }
+.specs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+.specs button { border: 1.5px solid var(--line); background: #fff; border-radius: 999px; padding: 6px 13px; cursor: pointer; font-size: 13px; }
+.specs button.on { border-color: var(--teal); background: #ccfbf1; color: #115e59; font-weight: 600; }
+.docs { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 10px; }
+.doc { text-align: left; border: 2px solid var(--line); background: #fff; border-radius: 14px; padding: 14px; cursor: pointer; display: flex; flex-direction: column; gap: 3px; font-family: inherit; }
+.doc.on { border-color: var(--blue); background: #f0f9ff; }
+.ava { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--blue), var(--teal)); color: #fff; display: grid; place-items: center; font-weight: 700; margin-bottom: 6px; }
+.dn { font-weight: 700; color: #0f172a; }
+.ds { font-size: 12px; color: var(--teal); font-weight: 600; }
+.dd, .df { font-size: 12px; color: var(--muted); }
+.slots { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0; }
+.slot { border: 1.5px solid #86efac; background: #f0fdf4; color: #166534; border-radius: 10px; padding: 8px 14px; cursor: pointer; font-weight: 700; display: flex; flex-direction: column; align-items: center; min-width: 74px; }
+.slot small { font-weight: 400; font-size: 10px; }
+.slot.sel { background: var(--blue); border-color: var(--blue); color: #fff; }
+.slot:disabled { background: #f1f5f9; border-color: #e2e8f0; color: #94a3b8; cursor: not-allowed; }
+.slot.busy:disabled { background: #fef2f2; border-color: #fecaca; color: #b91c1c; }
+.hint { color: var(--muted); font-size: 13px; }
+textarea { width: 100%; margin-top: 8px; }
+.alert { background: #fef2f2; color: #991b1b; padding: 12px; border-radius: 10px; margin: 0; }
+.confirm { padding: 15px; border: 0; border-radius: 14px; background: linear-gradient(90deg, var(--blue), var(--teal)); color: #fff; font-size: 16px; font-weight: 700; cursor: pointer; }
+.confirm:disabled { opacity: .45; cursor: not-allowed; }
+.ticket { max-width: 520px; margin: 10px auto; background: #fff; border-radius: 20px; padding: 28px; text-align: center; box-shadow: 0 10px 30px rgba(3, 105, 161, .12); border-top: 6px solid var(--teal); }
+.tick { width: 56px; height: 56px; margin: 0 auto; border-radius: 50%; background: #dcfce7; color: #16a34a; font-size: 28px; display: grid; place-items: center; }
+.ticket h2 { color: #0f172a; }
+.token { font-size: 34px; font-weight: 800; color: var(--blue); margin-bottom: 14px; }
+.ticket table { width: 100%; text-align: left; border-collapse: collapse; font-size: 14px; }
+.ticket td { padding: 8px; border-bottom: 1px dashed var(--line); }
+.ticket td:first-child { color: var(--muted); width: 90px; }
+.tbtn { display: flex; gap: 10px; margin-top: 18px; }
+.tbtn button, .tbtn a { flex: 1; padding: 11px; border-radius: 10px; font-weight: 600; cursor: pointer; text-decoration: none; font-size: 14px; }
+.tbtn button { border: 1.5px solid var(--line); background: #fff; }
+.tbtn a { background: var(--blue); color: #fff; }
